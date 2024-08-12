@@ -3,6 +3,7 @@ package com.sky.service;
 import com.sky.dto.SetmealDTO;
 import com.sky.dto.SetmealPageQueryDTO;
 import com.sky.result.PageResult;
+import com.sky.vo.SetmealVO;
 
 import java.util.List;
 
@@ -26,4 +27,17 @@ public interface SetmealService {
      * @return
      */
     void deleteBatch(List<Long> setmealIds);
+
+    /**
+     * 根据id查询套餐以及与菜品的关系
+     * @param id
+     * @return
+     */
+    SetmealVO getByIdWithDish(Long id);
+
+    /**
+     * 修改套餐以及套餐和菜品的关系
+     * @param setmealDTO
+     */
+    void update(SetmealDTO setmealDTO);
 }

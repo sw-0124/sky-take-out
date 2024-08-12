@@ -26,4 +26,9 @@
         </foreach>
 
     </select>
+
+    <select id="getBySetmealId" resultType="SetmealDish">
+        select * from setmeal_dish where setmeal_id = #{setmealId}
+    </select>
+
 </mapper>
