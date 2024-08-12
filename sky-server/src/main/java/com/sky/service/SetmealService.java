@@ -40,4 +40,11 @@ public interface SetmealService {
      * @param setmealDTO
      */
     void update(SetmealDTO setmealDTO);
+
+    /**
+     * 启用停用套餐 起售的套餐可以展示在用户端，停售的套餐不能展示在用户端
+     * @param status
+     * @param id
+     */
+    void startOrStop(Integer status, Long id);
 }

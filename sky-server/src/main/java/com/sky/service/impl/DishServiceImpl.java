@@ -207,7 +207,7 @@ public class DishServiceImpl implements DishService {
         dishMapper.update(dish);
 
         //如果菜品停售，则套餐也停售
-        if(status == StatusConstant.ENABLE){
+        if(status == StatusConstant.DISABLE){
             List<Long> ids = new ArrayList<>();
             ids.add(id);
             //查询菜品对应的套餐
@@ -227,7 +227,7 @@ public class DishServiceImpl implements DishService {
     }
 
     /**
-     * 根据分类id查询菜品    和name???
+     * 根据分类id查询菜品  和name
      * @param categoryId
      * @return
      */
