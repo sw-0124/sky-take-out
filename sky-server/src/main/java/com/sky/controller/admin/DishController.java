@@ -101,4 +101,20 @@ public class DishController {
         return Result.success();
     }
 
+    /**
+     * 启用/禁用菜品       菜品状态会影响套餐状态
+     * @param status
+     * @param id
+     * @return
+     */
+    @PostMapping("/status/{status}")
+    @ApiOperation("启用/禁用菜品")
+    public Result startOrStop(@PathVariable Integer status, Long id) {
+
+        log.info("启用/禁用菜品，id：{}，状态：{}", id, status);
+
+        dishService.startOrStop(status, id);
+        return Result.success();
+    }
+
 }

@@ -7,4 +7,5 @@ import java.util.List;
 @Mapper
 public interface SetmealDishMapper {
     List<Long> getSetmealIdsByDishIds(List<Long> dishIds);
+
 }
