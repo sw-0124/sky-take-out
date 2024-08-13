@@ -7,6 +7,23 @@
         insert into shopping_cart (name, image, user_id, dish_id, dish_flavor, setmeal_id, number, amount, create_time)
         values (#{name}, #{image}, #{userId}, #{dishId}, #{dishFlavor}, #{setmealId}, #{number}, #{amount}, #{createTime})
     </insert>
+    <delete id="delete" parameterType="ShoppingCart">
+        delete from shopping_cart
+        <where>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="dishId != null">
+                and dish_id = #{dishId}
+            </if>
+            <if test="setmealId != null">
+                and setmeal_id = #{setmealId}
+            </if>
+            <if test="dishFlavor != null">
+                and dish_flavor = #{dishFlavor}
+            </if>
+        </where>
+    </delete>
 
 
     <select id="list" resultType="ShoppingCart">
