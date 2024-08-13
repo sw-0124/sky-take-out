@@ -16,3 +16,6 @@ sky:
     endpoint: oss-cn-beijing.aliyuncs.com
     bucket-name: sky-sw-itcast
     access-key-secret: whV0nEad897iVxgq2gQWurf5pXEWbU
+  wechat:
+    appid: wxb3d88cb4484293ce
+    secret: 33b5845631f9308879771501322f47fe
