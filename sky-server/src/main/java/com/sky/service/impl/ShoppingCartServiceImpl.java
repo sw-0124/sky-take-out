@@ -98,4 +98,13 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
         return list;
     }
+
+    /**
+     * 清空购物车
+     * @param userId
+     */
+    @Override
+    public void cleanShoppingCart(Long userId) {
+        shoppingCartMapper.deleteByUserId(userId);
+    }
 }
