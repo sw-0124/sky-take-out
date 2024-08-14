@@ -12,5 +12,14 @@
                 #{orderDetail.number}, #{orderDetail.amount}, #{orderDetail.dishFlavor})
             </foreach>
     </insert>
+    <delete id="deleteBatch">
+        delete from order_detail where order_id in
+        <foreach collection="orderIds" item="orderId" separator="," open="(" close=")">
+            #{orderId}
+        </foreach>
+    </delete>
+    <select id="getByOrderId" resultType="OrderDetail">
+        select * from order_detail where order_id = #{orderId}
+    </select>
 
 </mapper>
