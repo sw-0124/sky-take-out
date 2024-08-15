@@ -1,10 +1,12 @@
 package com.sky.service.impl;
 
+import com.sky.dto.GoodsSalesDTO;
 import com.sky.entity.Orders;
 import com.sky.mapper.OrderMapper;
 import com.sky.mapper.UserMapper;
 import com.sky.service.ReportService;
 import com.sky.vo.OrderReportVO;
+import com.sky.vo.SalesTop10ReportVO;
 import com.sky.vo.TurnoverReportVO;
 import com.sky.vo.UserReportVO;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +21,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -33,6 +36,7 @@ public class ReportServiceImpl implements ReportService {
 
     /**
      * 统计指定时间区内营业额
+     *
      * @param begin
      * @param end
      * @return
@@ -44,7 +48,7 @@ public class ReportServiceImpl implements ReportService {
 
         dateList.add(begin);
 
-        while (!begin.equals(end)){
+        while (!begin.equals(end)) {
             //计算指定日期后一天的日期
             begin = begin.plusDays(1);
             dateList.add(begin);
@@ -81,6 +85,7 @@ public class ReportServiceImpl implements ReportService {
 
     /**
      * 统计指定时间区间用户数量
+     *
      * @param begin
      * @param end
      * @return
@@ -92,7 +97,7 @@ public class ReportServiceImpl implements ReportService {
         List<LocalDate> dateList = new ArrayList<>();
         dateList.add(begin);
 
-        while (!begin.equals(end)){
+        while (!begin.equals(end)) {
             //计算指定日期后一天的日期
             begin = begin.plusDays(1);
             dateList.add(begin);
@@ -137,6 +142,7 @@ public class ReportServiceImpl implements ReportService {
 
     /**
      * 统计指定时间区间订单总数，有效订单数，订单完成率
+     *
      * @param begin
      * @param end
      * @return
@@ -149,7 +155,7 @@ public class ReportServiceImpl implements ReportService {
 
         dateList.add(begin);
 
-        while (!begin.equals(end)){
+        while (!begin.equals(end)) {
             //计算指定日期后一天的日期
             begin = begin.plusDays(1);
             dateList.add(begin);
@@ -205,6 +211,32 @@ public class ReportServiceImpl implements ReportService {
                 .totalOrderCount(totalOrderCount)
                 .validOrderCount(totalValidOrderCount)
                 .orderCompletionRate(orderCompletionRate)
+                .build();
+    }
+
+    /**
+     * 统计指定时间区间销量排名top10
+     *
+     * @param begin
+     * @param end
+     * @return
+     */
+    @Override
+    public SalesTop10ReportVO rank(LocalDate begin, LocalDate end) {
+
+        LocalDateTime beginTime = LocalDateTime.of(begin, LocalTime.MIN);
+        LocalDateTime endTime = LocalDateTime.of(end, LocalTime.MAX);
+
+        //根据map查询
+        List<GoodsSalesDTO> salesTop10 = orderMapper.getSalesTop10(beginTime, endTime);
+
+        List<String> names = salesTop10.stream().map(GoodsSalesDTO::getName).collect(Collectors.toList());
+        List<Integer> numbers = salesTop10.stream().map(GoodsSalesDTO::getNumber).collect(Collectors.toList());
+
+        return SalesTop10ReportVO
+                .builder()
+                .nameList(StringUtils.join(names, ","))
+                .numberList(StringUtils.join(numbers, ","))
                 .build();
     }
 }
