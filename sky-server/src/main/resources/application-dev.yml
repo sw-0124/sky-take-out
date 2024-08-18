@@ -20,3 +20,7 @@ sky:
     appid: wxb3d88cb4484293ce
     secret: 33b5845631f9308879771501322f47fe
     notify-url: http://6fc1b9d7.r29.cpolar.top/notify/paySuccess
+  shop:
+    address: 北京市海淀区上地十街10号
+  baidu:
+    ak: 7C0QMrVQuj7hTzmoM5mXyOK20PrBFzAJ

@@ -1,4 +1,4 @@
-package com.sky.asptect;
+package com.sky.aspect;
 
 import com.sky.annotation.AutoFill;
 import com.sky.constant.AutoFillConstant;
@@ -58,7 +58,7 @@ public class AutoFillAspect {
         if(value == OperationType.INSERT){
             //为四个公共字段赋值
             try {
-                Method setCreateTime = entity.getClass().getDeclaredMethod( AutoFillConstant.SET_CREATE_TIME, LocalDateTime.class);
+                Method setCreateTime = entity.getClass().getDeclaredMethod(AutoFillConstant.SET_CREATE_TIME, LocalDateTime.class);
                 Method setCreateUser = entity.getClass().getDeclaredMethod(AutoFillConstant.SET_CREATE_USER, Long.class);
                 Method setUpdateTime = entity.getClass().getDeclaredMethod(AutoFillConstant.SET_UPDATE_TIME, LocalDateTime.class);
                 Method setUpdateUser = entity.getClass().getDeclaredMethod(AutoFillConstant.SET_UPDATE_USER, Long.class);

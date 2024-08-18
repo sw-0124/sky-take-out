@@ -25,7 +25,7 @@ public interface SetmealService {
 
     /**
      * 批量删除查询套餐也要删除套餐和菜品的关联关系
-     * @param ids
+     * @param setmealIds
      * @return
      */
     void deleteBatch(List<Long> setmealIds);

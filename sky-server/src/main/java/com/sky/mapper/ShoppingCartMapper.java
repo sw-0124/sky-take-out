@@ -9,6 +9,11 @@ import java.util.List;
 
 @Mapper
 public interface ShoppingCartMapper {
+    /**
+     * 查询购物车
+     * @param shoppingCart
+     * @return
+     */
     List<ShoppingCart> list(ShoppingCart shoppingCart);
 
     /**

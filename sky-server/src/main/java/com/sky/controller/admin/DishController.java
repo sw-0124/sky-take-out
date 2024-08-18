@@ -112,7 +112,6 @@ public class DishController {
 
         dishService.updateWithFlavor(dishDTO);
 
-
         //清理缓存数据 将所有分类的缓存清除
         clearCache("dish_*");
 

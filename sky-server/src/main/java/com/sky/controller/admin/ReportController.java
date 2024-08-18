@@ -97,6 +97,10 @@ public class ReportController {
     }
 
 
+    /**
+     * 导出运营数据报表
+     * @param response
+     */
     @GetMapping("/export")
     @ApiOperation("导出运营数据报表")
     public void export(HttpServletResponse response) {  //通过response获得输出流 将文件下载到客户端
